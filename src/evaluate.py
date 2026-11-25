@@ -41,6 +41,7 @@ def evaluate(model, test_ds, label_names, out_dir=None, tag="baseline"):
 def plot_history(histories, path):
     """여러 단계의 학습 곡선(loss, accuracy)을 이어서 저장."""
     import matplotlib.pyplot as plt
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     keys = ["loss", "val_loss", "accuracy", "val_accuracy"]
     merged = {k: sum((h.history[k] for h in histories), []) for k in keys}
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
